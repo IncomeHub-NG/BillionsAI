@@ -10,7 +10,11 @@ const avatarRoutes = require("./routes/avatar");
 const app = express();
 const PORT = process.env.PORT || 5000;
 
-app.use(cors({ origin: process.env.FRONTEND_URL || "*" }));
+app.use(cors({
+  origin: "*",
+  methods: ["GET", "POST", "PUT", "DELETE"],
+  allowedHeaders: ["Content-Type", "x-replicate-key", "x-elevenlabs-key"]
+}));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
